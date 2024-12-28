@@ -1,2 +1,6 @@
 .env
 .python-version
+*.md
+*.txt
+*.pdf
+*_collection/
