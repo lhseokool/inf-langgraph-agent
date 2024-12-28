@@ -3,4 +3,5 @@
 *.md
 *.txt
 *.pdf
+*_collection_*/
 *_collection/
