@@ -5,3 +5,4 @@
 *.pdf
 *_collection_*/
 *_collection/
+__pycache__/
