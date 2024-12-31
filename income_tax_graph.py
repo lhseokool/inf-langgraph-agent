@@ -1,9 +1,13 @@
 # %%
 from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import AzureOpenAIEmbeddings
 
-embedding_function = OpenAIEmbeddings(model='text-embedding-3-large')
-
+# embedding_function = OpenAIEmbeddings(model='text-embedding-3-large')
+embedding_function = AzureOpenAIEmbeddings(
+    model='text-embedding-3-large',
+    azure_endpoint='https://jason-m5amy0cl-westus3.cognitiveservices.azure.com/',
+    api_key='2ATphuKxYcY7lXd6Vb1Tzlf2gdx4P5SdoVQ3Tz8QZiSTyisvAcJ9JQQJ99ALACMsfrFXJ3w3AAAAACOGdMk4'
+)
 vector_store = Chroma(
     embedding_function=embedding_function,
     collection_name = 'income_tax_collection',
@@ -30,19 +34,22 @@ def retrieve(state: AgentState):
     return {'context': docs}
 
 # %%
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI
 
-llm = ChatOpenAI(model='gpt-4o')
+llm = AzureChatOpenAI(
+    azure_deployment='gpt-4o-2024-11-20',
+    api_version='2024-08-01-preview',   
+)
 
 # %%
 from langchain import hub
 
 generate_prompt = hub.pull("rlm/rag-prompt")
-generate_llm = ChatOpenAI(model='gpt-4o', max_completion_tokens=100)
+
 def generate(state: AgentState):
     context = state['context']
     query = state['query']
-    rag_chain = generate_prompt | generate_llm
+    rag_chain = generate_prompt | llm
     response = rag_chain.invoke({'question': query, 'context': context})
     return {'answer': response.content}
 
@@ -98,13 +105,11 @@ documents: {documents}
 student_answer: {student_answer}
 """)
 
-hallucination_llm = ChatOpenAI(model='gpt-4o', temperature=0)
-
 def check_hallucination(state: AgentState) -> Literal['hallucinated', 'not hallucinated']:
     answer = state['answer']
     context = state['context']
     context = [doc.page_content for doc in context]
-    hallucination_chain = hallucination_prompt | hallucination_llm | StrOutputParser()
+    hallucination_chain = hallucination_prompt | llm | StrOutputParser()
     response = hallucination_chain.invoke({'student_answer': answer, 'documents': context})
     print(f'hallucination response: {response}')
     return response
