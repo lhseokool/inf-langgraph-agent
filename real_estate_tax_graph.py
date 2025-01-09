@@ -152,7 +152,7 @@ def calculate_tax_base(state:AgentState):
         'market_ratio': market_ratio,
         'query': query
     })
-    print(f'tax_base == {tax_base}')
+
     return {'tax_base': tax_base}
 
 # %%
@@ -180,7 +180,7 @@ def calculate_tax_rate(state: AgentState):
         'tax_base': tax_base, 
         'query': query
     })
-    print(f'tax_rate == {tax_rate}')
+
     return {'answer': tax_rate}
 
 # %%

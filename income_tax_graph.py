@@ -62,10 +62,10 @@ doc_relevance_prompt = hub.pull("langchain-ai/rag-document-relevance")
 def check_doc_relevance(state: AgentState) -> Literal['relevant', 'irrelevant']:
     query = state['query']
     context = state['context']
-    print(f'context == {context}')
+
     doc_relevance_chain = doc_relevance_prompt | llm
     response = doc_relevance_chain.invoke({'question': query, 'documents': context})
-    print(f'doc relevance response: {response}')
+
     if response['Score'] == 1:
         return 'relevant'
     
@@ -111,7 +111,7 @@ def check_hallucination(state: AgentState) -> Literal['hallucinated', 'not hallu
     context = [doc.page_content for doc in context]
     hallucination_chain = hallucination_prompt | llm | StrOutputParser()
     response = hallucination_chain.invoke({'student_answer': answer, 'documents': context})
-    print(f'hallucination response: {response}')
+
     return response
 
 # %%
@@ -122,10 +122,10 @@ helpfulness_prompt = hub.pull("langchain-ai/rag-answer-helpfulness")
 def check_helpfulness_grader(state: AgentState):
     query = state['query']
     answer = state['answer']
-    print(F'answer == {answer}')
+
     helpfulness_chain = helpfulness_prompt | llm
     response = helpfulness_chain.invoke({'question': query, 'student_answer': answer})
-    print(f'helpfulness response: {response}')
+
     if response['Score'] == 1:
         return 'helpful'
     
