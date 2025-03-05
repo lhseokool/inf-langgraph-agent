@@ -1,13 +1,11 @@
-from dotenv import load_dotenv
+
 import streamlit as st
 from trading_graph import graph 
 
 
-import streamlit as st
-
 # Import your build_graph function from your module
 # from your_module import build_graph
-st.set_page_config(page_title="LangGraph + Streamlit", page_icon=":robot:")
+st.set_page_config(page_title="LangGraph + Streamlit", page_icon="📈")
 
 
 # Streamlit UI
@@ -15,7 +13,6 @@ st.title("Stock Analysis Multi-Agent System")
 st.markdown("""
 This app uses a multi-agent system to analyze stocks. Enter a ticker symbol and a question about the stock to get a comprehensive analysis.
 """)
-load_dotenv()
 
 if 'message_list' not in st.session_state:
     st.session_state.message_list = []
@@ -41,7 +38,7 @@ if user_input:
         with st.chat_message("assistant"):
             try:
                 ai_message = graph.invoke(
-                    {"messages": [("user", user_input)]}, stream_mode="messages", config=config
+                    {"messages": [("user", user_input)]}, config=config
                 );
                 
                 ai_message = graph.get_state(config).values['messages'][-1].content
