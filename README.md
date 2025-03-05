@@ -58,3 +58,27 @@ pip install -r requirements.txt
 ## 라이선스
 
 MIT 라이선스로 배포됩니다.
+
+## Streamlit 통합 예제
+
+이 저장소에는 LangGraph와 Streamlit을 통합하는 두 가지 예제가 포함되어 있습니다:
+
+### 1. chat.py
+이 예제는 LangGraph의 `invoke()` 메서드를 사용하여 Streamlit과 통합하는 방법을 보여줍니다.
+
+주요 특징:
+- `graph.invoke()`를 사용하여 한 번에 전체 응답을 생성
+- 간단한 구현으로, 스트리밍 없이 전체 응답을 한 번에 표시
+- 메시지 히스토리를 세션 상태로 관리
+- 에러 처리 및 로딩 상태 표시 포함
+
+### 2. chat_stream.py
+이 예제는 LangGraph의 스트리밍 기능을 활용하여 Streamlit과 통합하는 방법을 보여줍니다.
+
+주요 특징:
+- `StreamlitCallbackHandler`를 사용하여 실시간 스트리밍 구현
+- 토큰 단위로 응답을 생성하고 표시
+- 중간 단계와 토큰 생성 과정을 실시간으로 시각화
+- Streamlit의 컨텍스트 관리를 위한 고급 설정 포함
+
+두 예제 모두 동일한 기능을 제공하지만, `chat_stream.py`는 더 풍부한 사용자 경험을 제공하며 응답 생성 과정을 실시간으로 확인할 수 있습니다. 이 예제들은 추후 촬영해서 업데이트할 예정입니다.
