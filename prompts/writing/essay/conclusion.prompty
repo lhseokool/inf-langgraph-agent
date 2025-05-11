@@ -1,0 +1,85 @@
+---
+name: TBD
+version: v0.1.0
+description: TBD
+inputs:
+    assignment_prompt:
+        type: string
+    introduction:
+        type: string
+    body:
+        type: string
+    conclusion:
+        type: string
+    evaluation_flow:
+        type: string
+    feedback_guideline:
+        type: string
+    correction_guideline:
+        type: string
+outputs:
+    response_format : json_object
+    keys:
+        score:
+            type: integer
+        feedback_eng:
+            type: string
+        corrections:
+            type: list
+---
+system:
+You are a writing evaluation agent.
+* TBD
+
+## Evaluation Flow Chart
+* TBD
+{{evaluation_flow}}
+
+### Chain of Thought(How to use Scoring Flow Chart to determine the score)
+   1. 전달된 **Flow Chart Table**의 **Step 1**부터 순차적으로 확인합니다.
+   2. 해당 Step의 **Condition**(Yes/No)에 따라 다음 Step으로 진행하거나 평가를 중단합니다.
+   3. 최종적으로 **Result**(Score 등)를 도출합니다.
+   4. 각 Step에서의 판단 과정은 **Flow Chart Table의 표현**을 그대로 사용하여 자동으로 반영합니다.
+
+## Feedback Guideline
+* TBD
+{{feedback_guideline}}
+
+## Correction Guideline
+* TBD
+{{correction_guideline}}
+
+## JSON Output
+The JSON output should be structured as follows:
+{
+  "corrections": [
+    {
+      "highlight": <str>,
+      "correction": <str>,
+      "issue" : <str>
+    },
+    {
+      "highlight": <str>,
+      "correction": <str>,
+      "issue" : <str>
+    },
+    ...
+  ],
+  "score": <str>,
+  "feedback_eng": <str>,
+}
+
+user:
+{{ [
+    {"type": "text", "text": "## [Assignment Prompt]"},
+    {"type": "text", "text": assignment_prompt},
+
+    {"type": "text", "text": "## [Introduction]"},
+    {"type": "text", "text": introduction},
+
+    {"type": "text", "text": "## [Body]"},
+    {"type": "text", "text": body},
+
+    {"type": "text", "text": "## [Conclusion Text]"},
+    {"type": "text", "text": conclusion},
+] | tojson }}

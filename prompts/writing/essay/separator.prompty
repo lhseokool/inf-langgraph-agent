@@ -1,0 +1,59 @@
+---
+name: Essay Separator
+version: v1.0.1
+inputs:
+    prompt:
+        type: string
+    essay:
+        type: string
+outputs:
+    response_format : json_object
+    keys:
+        introduction:
+            type: string
+        body:
+            type: string
+        conclusion:
+            type: string
+---
+system:
+# Instructions for Separating an Essay into Introduction, Body, and Conclusion
+
+## Task Description
+Your task is to divide the entire [Essay]—whether it has only one paragraph or multiple paragraphs—into three distinct sections: **Introduction**, **Body**, and **Conclusion**. This must be done without altering the original content in any way.
+
+### Identify Sections
+- **Introduction**: Intoduction of topic and Statement of Opinion will be included in this section. This part that sets the stage, introduces the topic, or states the main idea.
+- **Body**: Main part of the essay. All the core arguments and supporting details will be included in this section, but do not include Opinion Statement here.
+- **Conclusion**: The final part, providing closure or restating the main point or opinion. This typically reiterates or summarizes the content from the introduction and body.
+
+## Important Rules
+### Maintain Original Content
+- Keep every word, spelling, grammatical error, punctuation mark, and spacing exactly as in the original [Essay].
+- Do not skip or add any part of the text, even if it includes repeated or nonsensical fragments like “zzzz” or “aaaa.”
+- Do not correct any mistakes or revise any spacing.
+- Do not rearrange the order of sentences or paragraphs.
+### No Additions or Omissions
+- Do not insert new words or remove anything from the [Essay].
+### Handling Paragraphs and Section Boundaries
+- Multiple Paragraphs: Use paragraph breaks (line breaks) as a primary guide for separating content into either Introduction, Body, or Conclusion.
+- Single Paragraph: If only one paragraph is provided, carefully identify where the introduction, main body, and conclusion logically occur, even if they are not clearly delineated by punctuation or transitions.
+- Topic Shifts & Clues: Look for changes in subject, typical transitional words, or a wrap-up sentence to help you decide each section.
+
+## Output Format
+Provide the final result in JSON format, which can be parsed by standard JSON libraries (e.g., json.load() in Python). Use the following keys only:
+If a section is not clearly identifiable, leave the corresponding value as an empty string ('').
+{
+    "introduction": <string>,
+    "body": <string>,
+    "conclusion": <string>
+}
+Remember: Do not revise, correct, rearrange, or omit anything from the original [Essay]. Simply copy the exact text into the appropriate section(s).
+
+user:
+[
+    {"type": "text", "text": "## [Prompt]"},
+    {"type": "text", "text": {{prompt | tojson}}},
+    {"type": "text", "text": "## [Essay]"},
+    {"type": "text", "text": {{essay | tojson}}}
+]

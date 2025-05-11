@@ -1,0 +1,21 @@
+| **Step**                | **Description**                                                   | **Flow**      | **Result**      | **Explanation**                                                                                                                        | **Examples**            | **Justification**                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------|--------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Step 1: Few Errors?** | Does the writing have few errors with minimal impact on clarity?  | Yes → Stop   | **Proficient**  | Few errors that do not obscure meaning demonstrate proficiency in grammar at the Basic level.                                          | *(Refer to Grammar)*    | The presence of only a few minor errors means the student can apply basic grammar rules effectively without significantly hindering understanding. |
+|                         |                                                                   | No → Proceed | *(continue)*    | If not, check the next level of severity for errors.                                                                                  | -                       | -                                                                                                                                     |
+| **Step 2: Occasional Errors?** | Does the writing have occasional errors that somewhat affect clarity? | Yes → Stop   | **Developing** | Occasional errors may cause slight disruption to clarity but show some understanding of grammar rules.                                  | -                       | The student attempts to use grammar rules, but errors occasionally disrupt readability or clarity.                                    |
+|                         |                                                                   | No → Proceed | *(continue)*    | If still not met, move to the final step.                                                                                             | -                       | -                                                                                                                                     |
+| **Step 3: Frequent Errors?**  | Does the writing have frequent errors that significantly impact clarity? | Yes → Stop   | **Beginning**  | Frequent and severe errors hinder understanding and reflect limited command of grammar rules.                                          | -                       | The writing is often unclear due to grammar mistakes, indicating a need for more focused instruction.                                |
+
+### Level-Appropriate Grammar Rules (BASIC G1-2)
+
+| **Category**             | **Explanation**                                            | **Example**                          |
+|--------------------------|------------------------------------------------------------|--------------------------------------|
+| **Adjectives and Adverbs**     | Introduce basic descriptive words for nouns and verbs.              | “The quick fox.”                     |
+| **Conjunctions and Prepositions** | Teach simple conjunctions like **and**, **but**.                   | “I like apples **and** oranges.”     |
+| **Nouns and Pronouns**          | Introduce simple nouns and pronouns.                               | “The dog is big.”                    |
+| **Punctuation**                 | Teach periods and question marks for sentence endings.              | “What is your name?”                 |
+| **Sentences and Clauses**       | Focus on constructing basic complete sentences.                     | “The cat sleeps.”                    |
+| **Spelling and Capitalization** | Introduce capitalization rules for names and first words in sentences. | “I live in New York.”               |
+| **Verbs and Verb Tenses**       | Teach basic present, past, and future tenses.                       | “She runs fast.”                     |
+
+---
